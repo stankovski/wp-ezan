@@ -1,0 +1,53 @@
+.ezan-block-editor {
+    border: 1px solid #e2e4e7;
+    background: #fff;
+    padding: 10px;  /* Reduced from 20px */
+    text-align: center;
+    max-width: 50%;  /* Add this to make it half size */
+    margin: 0 auto;  /* Center it horizontally */
+}
+
+.ezan-icon {
+    margin-bottom: 5px;  /* Reduced from 10px */
+}
+
+.ezan-icon .dashicons {
+    font-size: 20px;  /* Reduced from 40px */
+    width: 20px;      /* Reduced from 40px */
+    height: 20px;     /* Reduced from 40px */
+    color: #555;
+}
+
+.ezan-prayer-times-preview {
+    margin: 10px 0;  /* Reduced from 20px 0 */
+    border: 1px solid #eee;
+    padding: 8px;    /* Reduced from 15px */
+    background: #f9f9f9;
+}
+
+.ezan-prayer-time {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;  /* Reduced from 8px */
+    padding-bottom: 4px; /* Reduced from 8px */
+    border-bottom: 1px dotted #ddd;
+    font-size: 0.8em;    /* Added to reduce text size */
+}
+
+.ezan-prayer-time:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ezan-prayer-name {
+    font-weight: bold;
+}
+
+.ezan-preview-note {
+    font-style: italic;
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
