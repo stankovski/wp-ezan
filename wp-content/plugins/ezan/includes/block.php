@@ -19,6 +19,23 @@ function ezan_register_block_assets() {
         filemtime(EZAN_PLUGIN_DIR . 'assets/js/block.js')
     );
 
+    // Pass settings to block editor
+    $mosque_id = get_option('ezan_mosque_id', '');
+    $bg_color = get_option('ezan_bg_color', 'FFFFFF');
+    $fg_color = get_option('ezan_fg_color', '000000');
+    $other_color = get_option('ezan_other_color', 'EEEEEE');
+    $width = get_option('ezan_width', '250px');
+    $height = get_option('ezan_height', '260px');
+    
+    wp_localize_script('ezan-block-editor', 'ezanVars', array(
+        'mosque_id' => $mosque_id,
+        'bg_color' => $bg_color,
+        'fg_color' => $fg_color,
+        'other_color' => $other_color,
+        'width' => $width,
+        'height' => $height
+    ));
+
     // Register block editor style
     wp_register_style(
         'ezan-block-editor-style',
@@ -46,7 +63,8 @@ function ezan_register_block_assets() {
 
 // Block render callback
 function ezan_render_prayer_times_block($attributes) {
-    $mosque_id = get_option('ezan_mosque_id');
+    // Use block attributes if they exist, otherwise fall back to global settings
+    $mosque_id = !empty($attributes['mosqueId']) ? $attributes['mosqueId'] : get_option('ezan_mosque_id');
     
     if (empty($mosque_id)) {
         return '<div class="ezan-error">' . esc_html__('Please configure Mosque ID in Ezan settings.', 'ezan') . '</div>';

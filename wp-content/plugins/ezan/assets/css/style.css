@@ -2,51 +2,9 @@
     margin: 20px 0;
 }
 
-.ezan-prayer-times-container {
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-.ezan-mosque-name {
-    background: #4CAF50;
-    color: white;
-    padding: 15px;
-    margin: 0;
-    text-align: center;
-}
-
-.ezan-date {
-    text-align: center;
-    padding: 10px;
-    background: #f5f5f5;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-}
-
-.ezan-times-table {
+.ezan-prayer-times {
     width: 100%;
-    border-collapse: collapse;
-}
-
-.ezan-prayer-row {
-    border-bottom: 1px solid #eee;
-}
-
-.ezan-prayer-row:last-child {
-    border-bottom: none;
-}
-
-.ezan-prayer-name,
-.ezan-prayer-time {
-    padding: 12px 15px;
-    text-align: left;
-}
-
-.ezan-prayer-time {
-    text-align: right;
-    font-weight: bold;
+    text-align: center;
 }
 
 .ezan-loading {

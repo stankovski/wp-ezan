@@ -13,12 +13,37 @@
             title: {
                 type: 'string',
                 default: __('Prayer Times', 'ezan')
+            },
+            mosqueId: {
+                type: 'string',
+                default: ''
             }
         },
         
         // Block edit function
         edit: function(props) {
             var title = props.attributes.title;
+            // Use the attribute value if set, otherwise use the global setting
+            var mosqueId = props.attributes.mosqueId || (window.ezanVars ? ezanVars.mosque_id : '');
+            
+            // If we just loaded and have a global but no attribute, set it
+            if (!props.attributes.mosqueId && window.ezanVars && ezanVars.mosque_id) {
+                props.setAttributes({ mosqueId: ezanVars.mosque_id });
+            }
+            
+            // Get colors and dimensions from global ezan vars or use defaults
+            var bgColor = (window.ezanVars && ezanVars.bg_color) ? ezanVars.bg_color : 'FFFFFF';
+            var fgColor = (window.ezanVars && ezanVars.fg_color) ? ezanVars.fg_color : '000000';
+            var otherColor = (window.ezanVars && ezanVars.other_color) ? ezanVars.other_color : 'EEEEEE';
+            var width = (window.ezanVars && ezanVars.width) ? ezanVars.width : '250px';
+            var height = (window.ezanVars && ezanVars.height) ? ezanVars.height : '260px';
+            
+            // Create iframe src
+            var iframeSrc = mosqueId ? 
+                'https://ezan.io/ezantime/?loc=' + mosqueId + 
+                '&bc=' + bgColor + 
+                '&fc=' + fgColor + 
+                '&oc=' + otherColor : '';
             
             return [
                 // Block inspector controls
@@ -30,6 +55,13 @@
                             onChange: function(newTitle) {
                                 props.setAttributes({ title: newTitle });
                             }
+                        }),
+                        el(components.TextControl, {
+                            label: __('Mosque ID', 'ezan'),
+                            value: mosqueId,
+                            onChange: function(newMosqueId) {
+                                props.setAttributes({ mosqueId: newMosqueId });
+                            }
                         })
                     )
                 ),
@@ -37,35 +69,20 @@
                 // Block preview
                 el('div', { className: props.className },
                     el('div', { className: 'ezan-block-editor' },
-                        el('div', { className: 'ezan-icon' },
-                            el('span', { className: 'dashicons dashicons-clock' })
-                        ),
                         el('h3', {}, title),
-                        el('div', { className: 'ezan-prayer-times-preview' },
-                            el('div', { className: 'ezan-prayer-time' },
-                                el('span', { className: 'ezan-prayer-name' }, __('Fajr:', 'ezan')),
-                                el('span', { className: 'ezan-prayer-time-value' }, '05:30')
-                            ),
-                            el('div', { className: 'ezan-prayer-time' },
-                                el('span', { className: 'ezan-prayer-name' }, __('Dhuhr:', 'ezan')),
-                                el('span', { className: 'ezan-prayer-time-value' }, '12:45')
-                            ),
-                            el('div', { className: 'ezan-prayer-time' },
-                                el('span', { className: 'ezan-prayer-name' }, __('Asr:', 'ezan')),
-                                el('span', { className: 'ezan-prayer-time-value' }, '16:15')
-                            ),
-                            el('div', { className: 'ezan-prayer-time' },
-                                el('span', { className: 'ezan-prayer-name' }, __('Maghrib:', 'ezan')),
-                                el('span', { className: 'ezan-prayer-time-value' }, '19:30')
-                            ),
-                            el('div', { className: 'ezan-prayer-time' },
-                                el('span', { className: 'ezan-prayer-name' }, __('Isha:', 'ezan')),
-                                el('span', { className: 'ezan-prayer-time-value' }, '21:00')
+                        mosqueId ? 
+                            el('iframe', {
+                                src: iframeSrc,
+                                width: width,
+                                height: height,
+                                frameBorder: '0',
+                                scrolling: 'no'
+                            }) :
+                            el('div', { className: 'ezan-prayer-times-preview' },
+                                el('p', { className: 'ezan-preview-note' }, 
+                                    __('Please enter a Mosque ID in the block settings or configure it in the Ezan settings.', 'ezan')
+                                )
                             )
-                        ),
-                        el('p', { className: 'ezan-preview-note' }, 
-                            __('This is a preview. Actual prayer times will be loaded from ezan.io when the page is viewed.', 'ezan')
-                        )
                     )
                 )
             ];
