@@ -1,47 +1,29 @@
-# Digital Signage WordPress Plugin
+# Ezan WordPress Plugin
 
-WordPress plugin to enable organizations to use WordPress posts for digital signs
+WordPress plugin to embed prayer times from ezan.io in your WordPress sites
 
 License URI: https://opensource.org/licenses/MIT
 
-Create a dedicated digital signage display that automatically rotates through images from your WordPress posts.
+Display accurate prayer times on your WordPress website using the ezan.io prayer times service.
 
 ## Description
 
-Digital Signage Page creates a specialized page for digital signage displays. It automatically rotates through featured images from posts in a specified category, making it perfect for information screens, waiting rooms, or promotional displays.
+Ezan creates a simple way to embed prayer times from ezan.io on your WordPress site. It provides a shortcode and customization options to seamlessly integrate prayer times into any page or post, making it perfect for mosque websites, Islamic centers, or personal blogs.
 
 ### Features
-* Dedicated URL for your digital signage display
-* Automatic image rotation with configurable timing
-* Category-based image filtering
-* Custom image dimensions
-* Automatic page refresh to get the latest content
+* Easy embedding via Gutenberg editor
+* Integration with ezan.io prayer times service
+* Customizable colors and dimensions
 
 ### Installation
 
-1. Upload the `digital-signage` folder to the `/wp-content/plugins/` directory
+1. Upload the `ezan` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Configure settings under Settings > Digital Signage
-4. Access your digital signage at yourdomain.com/digital-signage
+3. Configure settings with your mosque ID and preferred display options
+4. Add the "Prayer Times" block
 
 ### Frequently Asked Questions
 
-#### How do I add images to the slideshow?
+#### How do I find my mosque ID?
 
-Add posts with featured images to the category you specified in the settings (default is 'news').
-
-#### Can I customize the refresh rate?
-
-Yes, you can set both the slide delay (time between slides) and page refresh interval in the settings.
-
-## Screenshots
-
-![Digital signage display](/wp-content/plugins/digital-signage/assets/screenshot-1.png)
-
-## Changelog
-
-### 1.0.1 
-* Added support for HTML pages; misc. improvements
-
-### 1.0.0
-* Initial release
+Visit ezan.io and search for your mosque. The mosque ID can be found in the URL or contact ezan.io support for assistance.
